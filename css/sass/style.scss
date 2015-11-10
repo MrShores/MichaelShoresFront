@@ -1,0 +1,309 @@
+/*------------------------------------------------------------------------------
+    :: Imports
+------------------------------------------------------------------------------*/
+
+@import 'fonts';
+
+/*------------------------------------------------------------------------------
+    :: Variables & Mixins
+------------------------------------------------------------------------------*/
+
+$text:      #1A1A1A;
+
+$red:       #FF4D52;
+$blue:      #82B8FF;
+
+$purple_0:  #0D0D1A; // darkest
+$purple_1:  #1A1A33; // Darker
+$purple_2:  #292952; // Lighter
+
+
+@mixin transition {
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+
+/*--------------- Fonts ---------------*/
+
+@mixin merriweather_light {
+    font-family: 'Merriweather';
+    font-weight: 300;
+}
+@mixin merriweather_normal {
+    font-family: 'Merriweather';
+    font-weight: 400;
+}
+@mixin merriweather_bold {
+    font-family: 'Merriweather';
+    font-weight: 700;
+}
+
+@mixin bebas_light {
+    font-family: 'bebas_neuelight';
+}
+@mixin bebas_book {
+    font-family: 'bebas_neuebook';
+}
+@mixin bebas_regular {
+    font-family: 'bebas_neue_regularregular';
+}
+@mixin bebas_bold {
+    font-family: 'bebas_neuebold';
+}
+
+/*------------------------------------------------------------------------------
+    :: Framework Classes
+------------------------------------------------------------------------------*/
+
+.bebas_light {
+    @include bebas_light;
+}
+.bebas_book {
+    @include bebas_book;
+}
+.bebas_regular {
+    @include bebas_regular;
+}
+.bebas_bold {
+    @include bebas_bold;
+}
+
+
+/*------------------------------------------------------------------------------
+    :: General
+------------------------------------------------------------------------------*/
+
+html, body {
+    height: 100%;
+}
+
+body {
+    color: $text;
+    font-size: 10px;
+    font-family: 'Merriweather', Georgia,  serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-size: 1.5em;
+    line-height: 2em;
+    margin: 0 0 .75em;
+
+    a {
+        color: $text;
+        text-decoration: none;
+        box-shadow: inset 0 -1px $blue, inset 0 -2px $blue;
+        border-bottom: 1px solid $blue;
+        @include transition;
+
+        &:hover, &:focus {
+            text-decoration: none;
+            box-shadow: inset 0 -1px $red, inset 0 -2px $red;
+            border-bottom: 1px solid $red;
+        }
+    }
+}
+p.lead {
+    font-size: 2.4em;
+    line-height: 1.25em;
+    margin: 0 0 0.625em;
+
+    &:first-of-type::before {
+        content: "";
+        background: $purple_1;
+        height: 0.25em;
+        display: block;
+        margin: 0 0 0.75em;
+        width: 8em;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+blockquote {
+    font-size: 2.4em;
+    line-height: 1.6em;
+    margin: 0 0 0.625em;
+
+    span {
+        border-bottom: 1px solid #999999;
+        padding-bottom: 3px;
+    }
+}
+
+h1 {
+    @include bebas_bold;
+    color: $purple_1;
+    font-size: 10.6em;
+    margin: 0;
+
+    span {
+        border-bottom: 1px solid $purple_1;
+    }
+}
+
+#main {
+    margin-left: 140px;
+}
+
+/*------------------------------------------------------------------------------
+    :: Menu bar
+------------------------------------------------------------------------------*/
+
+$link_border: 4px;
+$link_diameter: 80px;
+
+.navigation {
+    background: $purple_1 url('../img/stripes_menu.png') repeat;
+    width: 140px;
+    height: 100%;
+    float: left;
+    position: fixed;
+
+    .logo {
+        background-color: #1f1f3f;
+        background-image: -webkit-gradient(radial, 50% 50%,0,50% 50%,200, from(rgb(25, 25, 51)), to(rgb(31, 31, 63)));
+        background-image: -webkit-radial-gradient(50% 50%, rgb(31, 31, 63), rgb(25, 25, 51));
+        background-image: -moz-radial-gradient(50% 50%, rgb(31, 31, 63), rgb(25, 25, 51));
+        background-image: -o-radial-gradient(50% 50%, rgb(31, 31, 63), rgb(25, 25, 51));
+        background-image: -ms-radial-gradient(50% 50%, rgb(31, 31, 63), rgb(25, 25, 51));
+        background-image: radial-gradient(50% 50%, rgb(31, 31, 63), rgb(25, 25, 51));
+
+        a {
+            background-image: url('../img/stripes_menu.png');
+            display: block;
+            width: 100%;
+
+            img {
+                margin: 0 auto;
+                padding: 5.3em 0 5em;
+                display: block;
+                width: 44px;
+            }
+        }
+    }
+
+    .nav {
+        list-style: none;
+        position: absolute;
+        top: 50%;
+        left: 30px;
+        padding: 0;
+        margin: -140px 0 0;
+
+        li {
+            a {
+                font-size: 1.5em;
+                letter-spacing: 0.1em;
+                line-height: 80px;
+                display: block;
+                height: $link_diameter - $link_border;
+                width: $link_diameter - $link_border;
+                border-radius: 100px;
+                background: $purple_0;
+                color: $red;
+                display: block;
+                text-align: center;
+                @include bebas_regular;
+                text-decoration: none;
+                margin: 0 auto 1.7em;
+                border: 4px solid $purple_0;
+                @include transition;
+
+            }
+        }
+        li.active a,
+        a:hover,
+        a:focus {
+            border-color: $purple_2;
+        }
+        li.active a {
+            color: #373769;
+        }
+    }
+
+    .copyright {
+        font-size: 0.9em;
+        background: $purple_0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        padding: 1em 0;
+        color: $purple_2;
+    }
+}
+
+@media screen and (max-height: 630px){
+    .navigation {
+        .nav {
+            top: 313px;
+
+            li a {
+                margin-bottom: 1.2em;
+            }
+        }
+    }
+}
+
+/*------------------------------------------------------------------------------
+    :: Header
+------------------------------------------------------------------------------*/
+
+.header {
+    position: relative;
+
+    .title {
+        font-weight: 300;
+        width: 30%;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        .text {
+            padding: 2em 3em 2em 0;
+            text-align: right;
+            font-size: 1.4em;
+            text-transform: uppercase;
+
+            span {
+                font-weight: 700;
+            }            
+        }
+
+        &::after {
+            content: "";
+            width: 100%;
+            height: 7px;
+            display: block;
+            background: url('../img/stripes_blue.png');
+            background-position: -3px 0;
+        }
+    }
+}
+
+/*------------------------------------------------------------------------------
+    :: Home
+------------------------------------------------------------------------------*/
+
+
+
+/*------------------------------------------------------------------------------
+    :: Article
+------------------------------------------------------------------------------*/
+
+.article {
+    padding: 15em 5em 5em 15em;
+}
