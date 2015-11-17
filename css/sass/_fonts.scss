@@ -78,3 +78,62 @@
     font-style: normal;
 
 }
+
+
+// https://icomoon.io/app/#/select/font
+
+@font-face {
+    font-family: 'michaelicons';
+    src:url('fonts/michaelicons/michaelicons.eot?d8d4wp');
+    src:url('fonts/michaelicons/michaelicons.eot?d8d4wp#iefix') format('embedded-opentype'),
+        url('fonts/michaelicons/michaelicons.ttf?d8d4wp') format('truetype'),
+        url('fonts/michaelicons/michaelicons.woff?d8d4wp') format('woff'),
+        url('fonts/michaelicons.svg?d8d4wp#michaelicons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'michaelicons';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-chevron_down:before {
+    content: "\e900";
+}
+.icon-chevron_left:before {
+    content: "\e901";
+}
+.icon-chevron_right:before {
+    content: "\e902";
+}
+.icon-chevron_up:before {
+    content: "\e903";
+}
+.icon-close:before {
+    content: "\e904";
+}
+.icon-m:before {
+    content: "\e905";
+}
+.icon-plus_1:before {
+    content: "\e906";
+}
+.icon-plus_2:before {
+    content: "\e907";
+}
+.icon-quotes:before {
+    content: "\e908";
+}
+.icon-speach:before {
+    content: "\e909";
+}

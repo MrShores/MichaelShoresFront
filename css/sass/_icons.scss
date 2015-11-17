@@ -1,0 +1,178 @@
+$text:      #1A1A1A;
+
+$red:       #FF4D52;
+$blue:      #82B8FF;
+
+$purple_0:  #0D0D1A; // darkest
+$purple_1:  #1A1A33; // Darker
+$purple_2:  #292952; // Lighter
+
+
+[class^="bubble_"], [class*=" bubble_"] {
+    font-family: 'michaelicons';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin bubble($content, $font_size, $line_height){
+    width: 5.2em;
+    height: 5.2em;
+    text-align: center;
+
+    &:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        background: $blue;
+        position: absolute;
+        z-index: -1;
+    }
+
+    &:after {
+        color: white;
+        content: $content;
+        font-size: $font_size;
+        width: 100%;
+        line-height: $line_height;
+    }
+}
+
+/*---- Bubbles -----*/
+
+.bubble_quotes {
+    @include bubble("\e908", 3.5em, 1.5em);
+}
+
+.bubble_plus_thin {
+    @include bubble("\e906", 3.5em, 1.625em);
+}
+
+.bubble_plus_thick {
+    @include bubble("\e907", 4em, 1.375em);
+}
+
+.bubble_speach {
+    @include bubble("\e909", 3.8em, 1.6em);
+}
+
+.bubble_close {
+    @include bubble("\e904", 3.8em, 1.45em);
+}
+
+.bubble_chevron_down {
+    @include bubble("\e900", 4.4em, 1.3em);
+}
+.bubble_chevron_left {
+    @include bubble("\e901", 4.4em, 1.25em);
+    &:after {
+        position: relative;
+        left: -1px;
+    }
+}
+.bubble_chevron_right {
+    @include bubble("\e902", 4.4em, 1.25em);
+    &:after {
+        position: relative;
+        left: 1px;
+    }
+}
+.bubble_chevron_up {
+    @include bubble("\e903", 4.4em, 1.2em);
+}
+
+
+/*----- Make different sizes -----*/
+
+.bubble_quotes,
+.bubble_plus_thin,
+.bubble_plus_thick,
+.bubble_speach,
+.bubble_close,
+.bubble_chevron_up,
+.bubble_chevron_down,
+.bubble_chevron_left,
+.bubble_chevron_right {
+
+    &.bubble_x_small { font-size: 0.577em; }
+    &.bubble_small { font-size: 0.75em; }
+    &.bubble_medium { font-size: 1.5385em; }
+    &.bubble_large { font-size: 2.5em; }
+
+    &.bubble_red {
+        &:before {
+            background: $red;
+        }
+    }
+
+    &.bubble_purple {
+        &:before {
+            background: $purple_2;
+        }
+    }
+
+    &.bubble_stripes_blue {
+        &:before {
+            background: url('../img/stripes_blue.png');
+        }
+    }
+
+    &.bubble_red_text {
+        &:after {
+            color: $red;
+        }
+    }
+    &.bubble_blue_text {
+        &:after {
+            color: $blue;
+        }
+    }
+    &.bubble_purple_text {
+        &:after {
+            color: $purple_1;
+        }
+    }
+}
+
+
+
+
+.icon-chevron_down:before {
+    content: "\e900";
+}
+.icon-chevron_left:before {
+    content: "\e901";
+}
+.icon-chevron_right:before {
+    content: "\e902";
+}
+.icon-chevron_up:before {
+    content: "\e903";
+}
+.icon-close:before {
+    content: "\e904";
+}
+.icon-m:before {
+    content: "\e905";
+}
+.icon-plus_1:before {
+    content: "\e906";
+}
+.icon-plus_2:before {
+    content: "\e907";
+}
+.icon-quotes:before {
+    content: "\e908";
+}
+.icon-speach:before {
+    content: "\e909";
+}
