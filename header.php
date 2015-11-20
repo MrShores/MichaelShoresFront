@@ -20,7 +20,7 @@
             <div class="bubble_close bubble_red bubble_small"></div>
         </div>
         <div class="logo">
-            <a href="/michaelshoresfront/"><span class="icon-m"></span></a>
+            <a href="/"><span class="icon-m"></span></a>
         </div>
         <ul class="nav">
             <li class="about"><a href="about.php">About</a></li>

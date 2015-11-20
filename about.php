@@ -8,128 +8,56 @@ $body_class = 'post about';
 
         <div class="article">
 
-            <h1><span>Code Thinking</span></h1>
+            <h1><span>About</span></h1>
 
             <div class="content">
-                <p class="lead">It's hard to guage someone's knowledge just from a GitHub account&mdash;especially if the code is on client accounts.</p>
-
-                <p>Below is a list of experience, opinions, and insights about <a href="#python">python</a>, <a href="#django">django</a>, <a href="#wordpress">wordpress</a>, <a href="#frontend">front end</a>, and <a href="#general">general development</a> that will tell you where my skills are on the spectrum.</p>
-
-                <a name="python"></a>
-                <h2>Python</h2>
-
-                <h3>List Comprehensions</h3>
-
-                <p>Love list comprehensions in Python! So powerful, so concise, so pythonic. They're like poetry. My favorite is when I get to use an if/else AND a conditional. Imagine a contrived example where we need a list that has the names of all young females, and a value of <code>False</code> for any older females.</p>
-
-                <pre>
-people = [
-    {'name': 'Bob', 'age': 27, 'gender': 'male'},
-    {'name': 'Kiera', 'age': 7, 'gender': 'female'},
-    {'name': 'Scott', 'age': 8, 'gender': 'male'},
-    {'name': 'Becky', 'age': 45, 'gender': 'female'},
-    {'name': 'Nelly', 'age': 12, 'gender': 'female'}
-]
-girls = [p['name'] if p['gender'] <= 'female' else False for p in people if p['age'] < 13]
-print(girls)
-
->>> ['Kiera', False, 'Nelly']
-
-                </pre>
 
 
-                <h3>Pandas</h3>
-                <p>Is a dataframe an Excel sheet? Is it a database? Is it both? Either way, <strong>pandas</strong> is just beautiful.</p>
+                <p class="lead">In 2007, I started a short-lived comedy writing blog. It was my first foray into websites and it quickly hooked me. In fact, I liked building and maintaining the site so much that I dropped the writing altogether to learn about design and development.</p>
 
+                <p class="cap">I fell deep down the rabbit hole of design and development. Photoshop, HTML+CSS, Typography, jQuery, Wordpress, Color theory, Data Visualization, Python and Django. And now after a degree in graphic design, working as a User Experience designer for CALpers, being Creative Director of IDMLOCO, and teaching web design at CSU, Sacramento, the hole still goes. Machine Learning, C++, React.js, Data Science,…</p>
 
-                <h3>iPython Notebook</h3>
-                <p>Yes, please. Just a joy to work in that environment for writing python scripts and doing data work.</p>
+                <h2>Skill Level: Solid+</h2>
 
+                <p>The hardest part of hiring a developer or designer is <strong>trust</strong>. You have to ask yourself &#8220;Is this person competent enough to do what I need done?&#8221;. It&#8217;s an important question.</p>
 
-                <h3>Fabric</h3>
-                <p>Once you get used to having Fabric in your tool set, it's mega frustrating to go with out it. I use fabric to work with git, deploy local to dev environments, and deploy staging to live environments. One of the best implementations I've done is to programatically convert a custom MySQL-based CSM database to Wordpress using Fabric and Wordpress Command Line Interface. I also have my own WPCLI fabfile.py that will launch a clean local Wordpress development environment in about 1min.</p>
+                <p>To give you a better sense of my level of expertise and competence, I&#8217;ve prepared a list of insights and opinions on web development that will give you an idea of where I fit.</p>
 
+                <p>Learn more about my <a href="code-thinking.php">Code Thinking »</a></p>
 
-                <a name="django"></a>
-                <h2>Django</h2>
+                <h2>Strengths</h2>
 
-                <h3>Function-based Views vs. Class-based Views</h3>
-                <p>I prefer <strong>function-based views</strong>. Both have their strengths and weaknesses. I really love CBV in theory, but I've found in practice that I always seem to need to override enough view methods that the FBV approach would have been cleaner. I've also found it easyier for new team members to get up to speed on FBV, probably because of their procedural nature.</p>
-                <p>That said, FBV have plenty of their own issues. They're hard to keep D.R.Y. and need more boilerplate to work with. Also can be hard to reuse outside of keeping a snippet library (which I do).</p>
-                <p>In general, however, I mitigate any issues with FBV by pushing more logic and burden onto models and managers (fat models for the win!) . It reduces code repetition, simplifies views, makes them easier to follow for other team members, and models are easier to test.</p>
+                <h3>Complex Problem Solving</h3>
 
+                <p>I&#8217;ve studied math theory, philosophy and logic, and graphic design. A seemingly random mix at first. But they all work expressly in solving problems.</p>
 
-                <a name="frontend"></a>
-                <h2>Front End Stuff</h2>
+                <h3>Divergent Thinking</h3>
 
-                <h3>Responsive Design</h3>
-                <p>Media queries are wonderful – and entirely unrully if you don't control them. Most sites will have a giant chunk of CSS for the "desktop", then another giant chunk of media queries. <strong>Nope</strong>. Not how I roll. I add media query CSS per section or item. Media queries for site navigation immediately follows the main navigation styles. Each media query is rarely longer than 20 lines.</p>
-                <pre>
-.navigation {
-    …
-}
-@media screen and (max-width: 749px){
-    .navigation {
-        …
-    }
-}
+                <p>There&#8217;s always a solution to something, it just may not be what you thought it was going to be. Alternative ideas, methods, and approaches give you more leverage. Goes hand-in-hand with <em>Complex Problem Solving</em>.</p>
 
-.some_other_stuff {
-    …
-}
-</pre>
+                <h3>Clear Communication</h3>
 
+                <p>Clear interpersonal communication may be the most important skill you can have. As a creative director, writing clear emails to clients, designers, and developers was a easily double-digit percentage of my role. Clear communication is the oil that makes the whole working process work. Design skills and coding chops don&#8217;t matter if you can&#8217;t write a good email. </p>
 
+                <h2>Details</h2>
 
-                <h3>CSS Preprocessors: Maintenace</h3>
-                <p>CSS preprocessors can create challenges for long-term site maintenance in teams. Compiling works great when there's a local copy, but is more of a pain on a development server (needing SSH and some sort of compiler available). Setting up a local clone of a site is a pain too. Sure, this is all avoidable with good team communication, good dev server setup, etc. But smaller projects or client hosted projects can suffer.</p>
+                <h3>Education</h3>
 
+                <ul>
+                <li>B.S. Graphic Design, California State University, Sacramento 2011</li>
+                <li>B.S. Pure Mathematics, University of New Mexico 2002</li>
+                <li>B.A. Philosophy, University of New Mexico 2002</li>
+                </ul>
 
+                <h3>Contact</h3>
 
-                <h3>CSS Preprocessors: Responsive</h3>
-                <p>Although I love preprocessors, writing media queries can be a pain. Nesting makes perfect sense when writing out the main style – that's what processors are for. But recalling the levels of nesting for the media queries can be a pain. Imagine we just want to change the h3 subtitle. Then we have to include the entire parent structure. Certainly fewer levels of nesting and writing clean CSS help, but that's just not always possible depending on the design.</p>
-                <pre>
-.post {
-    …
-    .title {
-        …
-        h2 {…}
-        h3 {…}
-    }
-}
-@media screen and (max-width: 800px){
-    .post {
-        .title {
-            h3 {…}
-        }
-    }
-}
-                </pre>
+                <ul>
+                <li><a href="mailto:m@michaelshores.com">m@michaelshores.com</a></li>
+                <li><a href="https://twitter.com/meshores">Twitter &raquo;</a></li>
+                <li><a href="https://www.linkedin.com/in/michaelshores">LinkedIn &raquo;</a></li>
+                <li><a href="http://www.github.com/mrshores">GitHub &raquo;</a></li>
+                </ul>
 
-
-
-                <a name="wordpress"></a>
-                <h2>Wordpress</h2>
-
-
-                <h3>Real CMS management tools?</h3>
-                <p>On the list of things that most frustrate me about Wordpress is that there aren't any native admin tools for creating/maintaining custom post types and custom fields (okay custom fields technically, but nothing clean like Advanced Custom Fields).</p>
-                <p>Advanced Custom Fields Pro plugin has really nailed the custom fields thing about as well as possible within Wordpress. But it's a 3rd party plugin. I've heard people say that not everyone needs custom fields, and that's true, but I be more people need custom fields than need a multi-site installation.</p>
-
-
-                <h3>Categories are not Content Types</h3>
-                <p>May Wordpress developers use post categories to separate out posts in different part of the site. Imagine a site has the pages News, Jobs, and Team Members. News will show posts in the "news" category, Jobs will show posts in the "jobs" category, and Team Members will show posts from the "team" category.</p>
-                <p>But that places the content management burden on the user to remember to pick the right category.</p>
-                <p>Instead, I create custom post types for Jobs and Team Members. Each will have it's own admin section. Choosing "Add New" from the Team Members menu makes sense to clients. Remembering to check "Team Members" in the lower right corner does not.</p>
-
-
-
-                <a name="general"></a>
-                <h2>General</h2>
-
-                <h3>D.R.Y.</h3>
-                <p>Any time in need to resuse something, it either becomes a function or separate template file. Editing the same thing in multiple places is a major pain, and you'll always miss one of those extra places.</p>
-                <p>This is one of my biggest frustrations with Worpdress templates, which by their nature seem to require vast amounts of repeating/copying.</p>
 
             </div>
 
