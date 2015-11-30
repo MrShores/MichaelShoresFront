@@ -1,9 +1,4 @@
-<?php
-$page_title = 'Michael Shores | Designer &amp; Developer';
-$body_class = 'home';
-?>
-
-<?php include('header.php'); ?>
+<?php get_header(); ?>
 
 <div class="home_wrap">
 
@@ -24,4 +19,4 @@ $body_class = 'home';
 
 </div>
 
-<?php include('footer.php'); ?>
+<?php get_footer(); ?>

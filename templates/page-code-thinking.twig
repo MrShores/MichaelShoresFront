@@ -1,10 +1,6 @@
-<?php
-$page_title = 'Code Thinking | Michael Shores';
-$body_class = 'post code-thinking';
-?>
+{% extends 'templates/base.twig' %}
 
-<?php include('header.php'); ?>
-
+{% block content %}
 
         <div class="article">
 
@@ -139,4 +135,4 @@ print(titles)
         </div><!-- .article -->
 
 
-<?php include('footer.php'); ?>
+{% endblock %}

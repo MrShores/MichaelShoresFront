@@ -590,6 +590,8 @@ h1 {
     color: #292952; }
 
 body.about .nav li.about a,
+body.articles .nav li.articles a,
+body.single-post .nav li.articles a,
 body.contact .nav li.contact a {
   color: #ff4d52;
   border-color: #ff4d52; }
@@ -637,6 +639,8 @@ body.contact .nav li.contact a {
       text-align: right;
       font-size: 1.4em;
       text-transform: uppercase; }
+      .header .header_title .text a {
+        color: #1a1a33; }
       .header .header_title .text span {
         font-weight: 700; }
     .header .header_title::after {
@@ -787,6 +791,97 @@ body.home .designer {
   body.home .home_wrap {
     font-size: 4.5px; } }
 /*------------------------------------------------------------------------------
+    :: Article List
+------------------------------------------------------------------------------*/
+.article_list {
+  padding: 15em 5em 5em 15em;
+  max-width: 840px; }
+  .article_list h1 {
+    font-size: 4.8em;
+    font-family: 'Merriweather';
+    font-weight: 300; }
+    .article_list h1 span {
+      border-bottom: 6px solid #1a1a33;
+      padding: 0 0 0.45em;
+      display: block;
+      float: left; }
+    .article_list h1:before {
+      content: "\e908";
+      font-family: 'michaelicons';
+      font-size: 160px;
+      line-height: 208px;
+      color: white;
+      text-align: center;
+      display: block;
+      width: 222px;
+      height: 222px;
+      background: url("../img/stripes_blue_light.png") repeat;
+      border-radius: 200px;
+      position: absolute;
+      margin: -84px 0 0 -83px;
+      z-index: -10;
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      transition: all 0.3s ease; }
+  .article_list ul.articles {
+    margin: 0;
+    padding: 8em 0 0;
+    list-style: none;
+    clear: both; }
+    .article_list ul.articles li {
+      position: relative;
+      border-top: 1px solid #1a1a33; }
+      .article_list ul.articles li h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 4.8em;
+        line-height: 1.105em;
+        font-family: 'bebas_neuelight'; }
+        .article_list ul.articles li h2 a {
+          -webkit-transition: all 0.2s ease;
+          -moz-transition: all 0.2s ease;
+          -o-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+          color: #1a1a33;
+          display: block;
+          padding: 0.6em 0 0.5em 1.2em; }
+          .article_list ul.articles li h2 a:after {
+            content: "\e902";
+            color: white;
+            background: #ff4d52;
+            border-radius: 80px;
+            right: 0;
+            display: block;
+            width: 27px;
+            height: 32px;
+            font-family: 'michaelicons';
+            font-size: 24px;
+            line-height: 34px;
+            padding-left: 5px;
+            position: absolute;
+            top: 50%;
+            margin-top: -14px;
+            opacity: 0;
+            -webkit-transition: all 0.2s ease;
+            -moz-transition: all 0.2s ease;
+            -o-transition: all 0.2s ease;
+            transition: all 0.2s ease; }
+          .article_list ul.articles li h2 a:hover, .article_list ul.articles li h2 a:focus {
+            color: #ff4d52; }
+            .article_list ul.articles li h2 a:hover:after, .article_list ul.articles li h2 a:focus:after {
+              opacity: 1; }
+      .article_list ul.articles li .count {
+        position: absolute;
+        top: 50%;
+        margin-top: -0.5em;
+        line-height: 1em;
+        font-size: 3.6em;
+        font-family: 'bebas_neuebold'; }
+    .article_list ul.articles li:last-child {
+      border-bottom: 1px solid #1a1a33; }
+
+/*------------------------------------------------------------------------------
     :: Article
 ------------------------------------------------------------------------------*/
 .article {
@@ -861,7 +956,10 @@ body.home .designer {
       line-height: 1.6em;
       margin: 2em 0 1em;
       position: relative; }
-      .article .content blockquote span {
+      .article .content blockquote span, .article .content blockquote p {
+        font-size: inherit;
+        line-height: inherit;
+        display: inline;
         border-bottom: 1px solid #999999;
         padding-bottom: 3px; }
       .article .content blockquote .attribution {
