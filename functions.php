@@ -1,47 +1,64 @@
 <?php
-
-/* Bootstrap Navigation -- https://github.com/twittem/wp-bootstrap-navwalker    
-------------------------------------------------------------------------------*/
-
-require_once('inc/wp_bootstrap_navwalker.php');
-
-
-/* Images Support
+/*------------------------------------------------------------------------------
+    :: Images Support
 ------------------------------------------------------------------------------*/
 
 add_theme_support( 'post-thumbnails' );
 // add_image_size ( 'name', width, height, crop = false );
 
-/* Menu
+/*------------------------------------------------------------------------------
+    :: Menu
 ------------------------------------------------------------------------------*/
+
 function custom_register_menus() {
     register_nav_menus(
-            array(
-                'navigation-top' => __( 'Top Navigation Menu', 'Townsend' ),
-            )
+        array(
+            'navigation-top' => __( 'Top Navigation Menu', 'michaelshores' ),
+            'navigation-top-right' => __( 'Top Navigation Menu - Right', 'michaelshores' ),
+        )
     );
 }
 add_action( 'init', 'custom_register_menus' );
 
+/*------------------------------------------------------------------------------
+    :: Context
+------------------------------------------------------------------------------*/
 
-/* Styles and Scripts
+add_filter('timber_context', 'add_to_context');
+function add_to_context($data){
+
+    // Add other data to context
+
+    // Add a Timber menu and send it along to the context, if it exists
+    $main_menu = new TimberMenu('navigation-top');
+    if( $main_menu->id != null ){
+        $data['main_menu'] = $main_menu;
+    }
+
+    // Add a Timber menu and send it along to the context, if it exists
+    $main_menu_right = new TimberMenu('navigation-top-right');
+    if( $main_menu_right->id != null ){
+        $data['main_menu_right'] = $main_menu_right;
+    }
+
+    return $data;
+}
+
+/*------------------------------------------------------------------------------
+    :: Styles and Scripts
 ------------------------------------------------------------------------------*/
 
 /**
  * Enqueue scripts and styles
- */
+*/
 function custom_scripts() {
 
     // Underscore
-    wp_enqueue_script( 'underscore', get_template_directory_uri() . '/js/underscore_1.8.3.js', array('jquery'), '1.8.3', true);
+    // wp_enqueue_script( 'underscore', get_template_directory_uri() . '/js/underscore_1.8.3.js', array('jquery'), '1.8.3', true);
 
     // Velocity
-    wp_enqueue_script( 'velocity', get_template_directory_uri() . '/js/velocity/velocity.min.js', array('jquery'), '1.2.3', true);
-    wp_enqueue_script( 'velocity_ui', get_template_directory_uri() . '/js/velocity/velocity.ui.js', array('jquery'), '5.0.4', true);
-
-    // Bootstrap 3.0
-    // wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/lib/bootstrap-3.3.5/css/bootstrap.min.css');
-    // wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/lib/bootstrap-3.3.5/js/bootstrap.min.js', array('jquery'), '1.0.0', true );
+    // wp_enqueue_script( 'velocity', get_template_directory_uri() . '/js/velocity/velocity.min.js', array('jquery'), '1.2.3', true);
+    // wp_enqueue_script( 'velocity_ui', get_template_directory_uri() . '/js/velocity/velocity.ui.js', array('jquery'), '5.0.4', true);
 
     // Custom theme
     wp_enqueue_style( 'michaelshores', get_template_directory_uri() . '/css/style.css');
@@ -49,54 +66,10 @@ function custom_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'custom_scripts' );
 
-
-/* TinyMCE Editor Styles
+/*------------------------------------------------------------------------------
+    :: Misc.
 ------------------------------------------------------------------------------*/
 
-// Callback function to insert 'styleselect' into the $buttons array
-function custom_mce_buttons_2( $buttons ) {
-    array_unshift( $buttons, 'styleselect' );
-    return $buttons;
-}
-// add_filter('mce_buttons_2', 'custom_mce_buttons_2');
-
-// Callback function to filter the MCE settings
-function my_mce_before_init_insert_formats( $init_array ) {  
-    // Define the style_formats array
-    $style_formats = array(  
-        // Each array child is a format with it's own settings
-        array(
-            'title' => 'Large Paragraph',  
-            'block' => 'p',  
-            'classes' => 'lead',
-            'wrapper' => false,
-        ),
-        array(
-            'title' => 'Button Link',  
-            'block' => 'a',
-            'selector' => 'a',
-            'classes' => 'btn',
-            'wrapper' => true,
-        ),
-    );  
-    // Insert the array, JSON ENCODED, into 'style_formats'
-    $init_array['style_formats'] = json_encode( $style_formats );  
-    
-    return $init_array;  
-  
-} 
-// Attach callback to 'tiny_mce_before_init' 
-// add_filter( 'tiny_mce_before_init', 'my_mce_before_init_insert_formats' );  
-
-// Add a stylesheet to show in the editor
-function my_theme_add_editor_styles() {
-    add_editor_style( 'css/custom-tinymce-style.css' );
-}
-// add_action( 'after_setup_theme', 'my_theme_add_editor_styles' );
-
-
-/* Misc.
-------------------------------------------------------------------------------*/
 /* Page Slug Body Class
  *
 */

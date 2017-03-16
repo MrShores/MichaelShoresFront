@@ -1,0 +1,8 @@
+# SASS
+*.sass-cache/
+
+# Sys files
+*.DS_Store
+
+# Misc
+michaelshores.sublime-workspace

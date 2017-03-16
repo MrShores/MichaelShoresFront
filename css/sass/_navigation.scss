@@ -1,0 +1,262 @@
+/*------------------------------------------------------------------------------
+    :: Settings
+------------------------------------------------------------------------------*/
+
+$nav_background:        white;
+$font_family:           "Merriweather";
+$nav_desktop_height:    67px;
+$nav_mobile_height:     67px;
+
+$mobile_breakpoint:     $breakpoint_m;
+
+/*------------------------------------------------------------------------------
+    :: Navigation
+------------------------------------------------------------------------------*/
+
+.navigation {
+    position: relative;
+    z-index: 100;
+    height: $nav_mobile_height;
+    background: $nav_background;
+    font-family: $font_family;
+
+    &:after {
+        content: "";
+        display: block;
+        width: 235px;
+        height: 7px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: url('../img/stripes_blue.png');
+        background-position: 1px 0;
+    }
+
+    .navigation_toggle {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: none;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        outline: none;
+
+        &:hover,
+        &:active,
+        &:focus {
+            outline: none;
+        }
+
+        span {
+            display: block;
+            height: 4px;
+            width: 30px;
+            margin-bottom: 5px;
+            background: $blue;
+        }
+    }
+
+    a.logo {
+        display: block;
+        float: left;
+        padding: 1.25em 1.3em;
+        font-size: 1.6em;
+        font-weight: 300;
+        text-transform: uppercase;
+        color: $purple_1;
+        letter-spacing: 0.05em;
+        @include trans(0.2s);
+
+        span {
+            font-weight: 700;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $purple_2;
+        }
+    }
+
+    .menu_holder {
+        position: absolute;
+        width: 100%;
+        top: $nav_mobile_height;
+    }
+
+    ul { margin: 0; padding: 0; list-style: none; }
+
+    ul.menu {
+        display: none; // hide by default
+        box-shadow: 0 3px 8px -1px rgba(0,0,0,0.5);
+
+        // All mobile menu links
+        li {
+            background: white;
+
+            a {
+                display: block;
+                font-size: 1.5em;
+                letter-spacing: 0.05em;
+                padding: 0.65em 1.2em;
+                color: black;
+                @include trans(0.2s);
+
+                &:hover,
+                &:active,
+                &:focus {
+                    background: $red;
+                    color: white;
+                }
+            }
+        }
+
+        // Top level mobile menu links
+        > li {
+            border-top: 1px solid #eee;
+        }
+    }
+
+    ul.sub-menu {
+        display: none;
+
+        // 2nd level mobile menu links
+        li {
+            border-top: 1px solid #eee;
+
+            a {
+                padding-left: 2em;
+            }
+        }
+    }
+
+    &.navigation-open {
+        ul.menu {
+            display: block;
+        }
+    }
+
+    li.open {
+        ul.sub-menu {
+            display: block;
+        }
+    }
+}
+
+/*------------------------------------------------------------------------------
+    :: Desktop Styles
+------------------------------------------------------------------------------*/
+
+@media screen and (min-width: $mobile_breakpoint){
+    .navigation {
+        height: $nav_desktop_height;
+
+        .navigation_toggle {
+            display: none;
+        }
+
+        a.logo {
+
+        }
+
+        .menu_holder {
+            position: static;
+            width: auto;
+            top: auto;
+        }
+
+        ul.menu {
+            display: block;
+            float: left;
+            padding: 1.5em 0 0 5em;
+            box-shadow: none;
+
+            li {
+                position: relative;
+                display: inline-block;
+                border: 0 !important;
+                background: transparent;
+
+                a {
+                    color: $purple_1;
+                    font-weight: 300;
+                    font-size: 1.4em;
+                    padding: 0.5em 0.6em;
+                    background: transparent;
+                    letter-spacing: 0.05em;
+                    line-height: 1em;
+                    @include trans(0.2s);
+
+                    &:after {
+                        content: "";
+                        display: block;
+                        height: 2px;
+                        background: white;
+                        width: 0;
+                        margin-top: 2px;
+                        @include trans(0.4s);
+                    }
+                }
+            }
+
+            > li {
+                margin-right: 2em;
+
+                a {}
+            }
+
+            > li a:hover,
+            > li a:active,
+            > li a:focus,
+            > li.active a,
+            > li:hover a {
+                color: $purple_1;
+                background: white;
+
+                &:after {
+                    width: 100%;
+                    background: $red;
+                }
+            }
+        }
+
+        ul.menu-right {
+            float: right;
+            padding-right: 2em;
+        }
+
+        ul.sub-menu {
+            display: none;
+            position: absolute;
+            background: white;
+
+            li {
+                display: block;
+                white-space: nowrap;
+
+                a:hover,
+                a:active,
+                a:focus {
+                    color: white;
+                    background: red;
+                }
+            }
+        }
+
+        // Display dropdown on hover
+        ul.menu > li:hover > ul.sub-menu {
+            display: block;
+        }
+        ul.menu-right > li:hover > ul.sub-menu {
+            right: 0;
+        }
+
+        // Position second dropdown (3rd level links)
+        ul.menu > li:hover > ul.sub-menu > li:hover > ul.sub-menu {
+            top: 10px;
+            left: 100%;
+            display: block;
+        }
+    }
+}

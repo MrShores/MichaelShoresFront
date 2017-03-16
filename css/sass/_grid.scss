@@ -1,0 +1,210 @@
+/*------------------------------------------------------------------------------
+    :: Settings
+------------------------------------------------------------------------------*/
+
+// Grid widths, columns, spacing
+
+$max_width:             1000px; // width of the container
+$container_padding:     15px;   // padding outside of the container
+$gutter:                15px;   // space between the columns
+$columns:               12;     // number of columns
+
+// Media query settings
+
+$breakpoint_small:      560px;
+$breakpoint_medium:     780px;
+
+// Mixins etc.
+
+@mixin container {
+    padding-left: $container_padding;
+    padding-right: $container_padding;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin col_center {
+    margin-left: auto;
+    margin-right: auto;
+    clear: both;
+    float: none;
+}
+
+@mixin col_hide {
+    position: absolute;
+    left: -9999px;
+}
+
+/*------------------------------------------------------------------------------
+    :: Functions
+------------------------------------------------------------------------------*/
+
+/**
+ * Return the percentage width for the width of column
+ *
+ * @param $span = number of columns to span
+ * @param $columns = number of columns to divide grid into
+*/
+@function column_width($span){
+    @return percentage($span / $columns);
+}
+
+/*------------------------------------------------------------------------------
+    :: Grid
+------------------------------------------------------------------------------*/
+
+.container {
+    @include container;
+    max-width: $max_width;
+}
+
+.row {
+    margin-left: -$gutter;
+    margin-right: -$gutter;
+
+    &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+
+.container-full {
+    @include container;
+}
+
+
+[class*="col_"] {
+    padding-left: $gutter;
+    padding-right: $gutter;
+    box-sizing: border-box;
+}
+
+.col_pad {
+    padding-left: $gutter;
+    padding-right: $gutter;
+    box-sizing: border-box;
+}
+
+/*------------------------------------------------------------------------------
+    :: Mobile Grid
+------------------------------------------------------------------------------*/
+
+/**
+ * Stack middle and desktop grid columns
+*/
+@for $i from 1 through $columns {
+    .col_#{$i},
+    .col_m_#{$i} {
+        float: none;
+    }
+}
+
+/**
+ * Generate all mobile column width percentages
+ * for column spans 1 through $columns.
+ *
+ * Outputs:
+ *     .col_s_1 {width: 8.333%;}
+ *     .col_s_2 {width: 16.666%;}
+ *     .col_s_3 {width: 25%;}
+*/
+@for $i from 1 through $columns {
+    .col_s_#{$i} {
+        width: column_width($i);
+        float: left;
+    }
+}
+
+// Classes BELOW small breakpoint size
+@media screen and (max-width: $breakpoint_small){
+
+    .col_s_center {
+        @include col_center;
+    }
+
+    .s_hide {
+        @include col_hide;
+    }
+}
+
+/*------------------------------------------------------------------------------
+    :: Medium Grid
+------------------------------------------------------------------------------*/
+
+// Classes ABOVE small breakpoint size
+@media screen and (min-width: $breakpoint_small){
+
+    /**
+     * Generate all middle size column width percentages 
+     * for column spans 1 through $columns.
+     *
+     * Outputs:
+     *     .col_m_1 {width: 8.333%;}
+     *     .col_m_2 {width: 16.666%;}
+    */
+    @for $i from 1 through $columns {
+        .col_m_#{$i} {
+            width: column_width($i);
+            float: left;
+        }
+    }
+}
+
+// Classes BETWEEN small and medium breakpoints
+@media screen and (min-width: $breakpoint_small) and (max-width: $breakpoint_medium){
+
+    .col_m_center {
+        @include col_center;
+    }
+
+    .m_hide {
+        @include col_hide;
+    }
+}
+
+/*------------------------------------------------------------------------------
+    :: Desktop Grid
+------------------------------------------------------------------------------*/
+
+// Classes ABOVE medium breakpoint size
+@media screen and (min-width: $breakpoint_medium){
+
+    /**
+     * Generate all desktop column width percentages 
+     * for column spans 1 through $columns.
+     *
+     * Outputs:
+     *     .col_1 {width: 8.333%;}
+     *     .col_2 {width: 16.666%;}
+    */
+    @for $i from 1 through $columns {
+        .col_#{$i} {
+            width: column_width($i);
+            float: left;
+        }
+    }
+
+    /**
+     * Generate all offset widths as percentages
+     * for column spans 1 through $columns.
+     *
+     * Outputs:
+     *     .col_offset_1 {margin-left: 8.333%;}
+     *     .col_offset_2 {margin-left: 16.666%;}
+     *     .col_offset_3 {margin-left: 25%;}
+    */
+    @for $i from 1 through $columns {
+        .col_offset_#{$i} {
+            margin-left: column_width($i);
+        }
+    }
+
+    .col_center {
+        @include col_center;
+    }
+
+    .col_hide {
+        @include col_hide;
+    }
+}

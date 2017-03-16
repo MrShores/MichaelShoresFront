@@ -1,0 +1,20 @@
+<ul class="menu {% if right %}menu-right{% endif %}">
+    {% for item in menu.get_items %}
+        {% if item.get_children %}
+            <li class="dropdown {% if item.current_item_parent %}active{% endif %}">
+                <a href="#">{{ item.title }} <span class="caret"></span></a>
+                <ul class="sub-menu">
+                    {% for child in item.get_children %}
+                        <li {% if child.current %}class="active"{% endif %}>
+                            <a href="{{ child.link }}" title="{{ child.title }}">{{ child.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% else %}
+            <li {% if item.current %}class="active"{% endif %}>
+                <a href="{{ item.link }}" title="{{ item.title }}">{{ item.title }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

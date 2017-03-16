@@ -1,0 +1,25 @@
+<div class="navigation">
+
+    <button class="navigation_toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <a href="{{ site.link }}" class="logo"><span>Michael</span> Shores</a>
+
+    <div class="menu_holder">
+
+        {% if main_menu %}
+            {% set vars = {'menu': main_menu, 'right': false} %}
+            {% include 'templates/_navigation_ul.twig' with vars %}
+        {% endif %}
+
+        {% if main_menu_right %}
+            {% set vars = {'menu': main_menu_right, 'right': true} %}
+            {% include 'templates/_navigation_ul.twig' with vars %}
+        {% endif %}
+        
+    </div>
+
+</div><!-- .navigation -->

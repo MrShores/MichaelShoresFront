@@ -1,11 +1,4 @@
 /*------------------------------------------------------------------------------
-    :: Imports
-------------------------------------------------------------------------------*/
-
-@import 'fonts';
-@import 'icons'; // custom "circles" with icons, icon svg in `_fonts.scss`
-
-/*------------------------------------------------------------------------------
     :: Variables & Mixins
 ------------------------------------------------------------------------------*/
 
@@ -18,16 +11,28 @@ $purple_0:  #0D0D1A; // darkest
 $purple_1:  #1A1A33; // Darker
 $purple_2:  #292952; // Lighter
 
+$breakpoint_m: 760px;
+$breakpoint_s: 560px;
 
-@mixin transition($time) {
+@mixin trans($time) {
     -webkit-transition: all $time ease;
     -moz-transition: all $time ease;
     -o-transition: all $time ease;
     transition: all $time ease;
 }
 
+/*------------------------------------------------------------------------------
+    :: Imports
+------------------------------------------------------------------------------*/
 
-/*--------------- Fonts ---------------*/
+@import 'fonts';
+@import 'icons';        // custom "circles" with icons, icon svg in `_fonts.scss`
+@import 'grid';         // MS Grid
+@import 'navigation';   // navigation styles
+
+/*------------------------------------------------------------------------------
+    :: Fonts
+------------------------------------------------------------------------------*/
 
 @mixin merriweather_light {
     font-family: 'Merriweather';
@@ -62,7 +67,7 @@ $purple_2:  #292952; // Lighter
         text-decoration: none;
         box-shadow: inset 0 -1px $blue, inset 0 -2px $blue;
         border-bottom: 1px solid $blue;
-        @include transition(0.2s);
+        @include trans(0.2s);
 
         &:hover, &:focus {
             text-decoration: none;
@@ -89,6 +94,24 @@ $purple_2:  #292952; // Lighter
     @include bebas_bold;
 }
 
+/*------------------------------------------------------------------------------
+    :: Responsive Sticky Footer
+------------------------------------------------------------------------------*/
+
+html,
+body { height: 100%; }
+ 
+body {
+  display: table;
+  width: 100%;
+}
+ 
+#main, footer {
+  display: table-row;
+  height: 1px;
+}
+ 
+#main { height: 100%; }
 
 /*------------------------------------------------------------------------------
     :: General
@@ -101,8 +124,9 @@ html, body {
 body {
     color: $text;
     font-size: 10px;
-    font-family: 'Merriweather', Georgia,  serif;
+    font-family: 'Merriweather', Georgia, serif;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     margin: 0;
     padding: 0;
 }
@@ -157,6 +181,7 @@ h1 {
     @include bebas_bold;
     color: $purple_1;
     font-size: 10.6em;
+    letter-spacing: 0.025em;
     margin: 0;
 
     span {
@@ -181,149 +206,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*------------------------------------------------------------------------------
-    :: Menu bar
-------------------------------------------------------------------------------*/
-
-$link_border: 4px;
-$link_diameter: 80px;
-
-.navigation {
-    background: $purple_1 url('../img/stripes_menu.png') repeat;
-    width: 140px;
-    height: 100%;
-    z-index: 200;
-    position: fixed;
-
-    .close {
-        position: absolute;
-        z-index: 10;
-        padding: 0;
-        cursor: pointer;
-        right: -1.95em;
-        top: 1.25em;
-        display: none;
-    }
-
-    .logo {
-        background-color: #1f1f3f;
-        background-image: -webkit-gradient(radial, 50% 50%,0,50% 50%,200, from(rgb(25, 25, 51)), to(rgb(31, 31, 63)));
-        background-image: -webkit-radial-gradient(50% 50%, rgb(31, 31, 63), rgb(25, 25, 51));
-        background-image: -moz-radial-gradient(50% 50%, rgb(31, 31, 63), rgb(25, 25, 51));
-        background-image: -o-radial-gradient(50% 50%, rgb(31, 31, 63), rgb(25, 25, 51));
-        background-image: -ms-radial-gradient(50% 50%, rgb(31, 31, 63), rgb(25, 25, 51));
-        background-image: radial-gradient(50% 50%, rgb(31, 31, 63), rgb(25, 25, 51));
-
-        a {
-            background-image: url('../img/stripes_menu.png');
-            display: block;
-            width: 100%;
-
-            .icon-m {
-                margin: 0 auto;
-                padding: 0.25em 0;
-                display: block;
-                text-align: center;
-                font-size: 12em;
-                text-shadow: 0 1px #23234A;
-                color: $purple_0;
-            }
-        }
-    }
-
-    .nav {
-        list-style: none;
-        position: absolute;
-        top: 50%;
-        left: 30px;
-        padding: 0;
-        margin: -140px 0 0;
-
-        li {
-            a {
-                font-size: 1.5em;
-                letter-spacing: 0.1em;
-                line-height: 72px;
-                display: block;
-                height: $link_diameter - $link_border;
-                width: $link_diameter - $link_border;
-                border-radius: 100px;
-                background: $purple_0;
-                color: $red;
-                display: block;
-                text-align: center;
-                @include bebas_regular;
-                text-decoration: none;
-                margin: 0 auto 1.7em;
-                border: 4px solid $purple_0;
-                @include transition(0.2s);
-
-            }
-        }
-        li.active a,
-        a:hover,
-        a:focus {
-            border-color: $red;
-        }
-        li.active a {
-            // color: #373769;
-            color: $red;
-        }
-    }
-
-    .copyright {
-        font-size: 0.9em;
-        background: $purple_0;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        text-align: center;
-        padding: 1em 0;
-        color: $purple_2;
-    }
-}
-
-// TEMPORARY NAVIGATION ACTIVE
-body.about .nav li.about,
-body.articles .nav li.articles,
-body.single-post .nav li.articles,
-body.contact .nav li.contact {
-    a {
-        color: $red;
-        border-color: $red;
-    }
-}
-
-@media screen and (max-height: 630px){
-    .navigation {
-        .nav {
-            top: 313px;
-
-            li a {
-                margin-bottom: 1.2em;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 780px){
-    .navigation {
-        left: -140px;
-
-        &.open {
-            .close {
-                display: block;
-            }
-        }
-    }
-    #main {
-        margin-left: 0;
-    }
-}
-
-/*------------------------------------------------------------------------------
     :: Header
 ------------------------------------------------------------------------------*/
-
+/*
 .header {
     position: relative;
 
@@ -400,6 +285,7 @@ body.contact .nav li.contact {
         }
     }    
 }
+*/
 
 /*------------------------------------------------------------------------------
     :: Footer
@@ -407,7 +293,16 @@ body.contact .nav li.contact {
 
 footer {
     clear: both;
-    height: 5em;
+    background: $purple_0;
+
+    .copyright {
+        font-size: 1em;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+        padding: 1em 0;
+        color: #668;
+    }
 }
 
 /*------------------------------------------------------------------------------
@@ -415,22 +310,20 @@ footer {
 ------------------------------------------------------------------------------*/
 
 body.home {
-    .header_title {
-        display: none;
-    }
+
     #main {
         position: relative;
     }
     .home_wrap {
         position: absolute;
-        top: 76px;
+        top: 176px;
         left: 100px;
-        @include transition(0.2s);
+        @include trans(0.2s);
 
         .link {
             display: block;
             position: absolute;
-            @include transition(0.2s);
+            @include trans(0.2s);
 
             &.about_link {
                 left: 69.2em;
@@ -478,7 +371,7 @@ body.home {
         top: 0.45em;
         left: 0.37em;
         position: absolute;
-        @include transition(0.2s);
+        @include trans(0.2s);
 
         span {
             border: none;
@@ -513,6 +406,15 @@ body.home {
             height: 6px;
             width: 12.8em;
             display: block;
+        }
+    }
+}
+
+@media screen and (min-width: 1160px){
+    body.home {
+        .home_wrap {
+            left: 50%;
+            margin-left: -422px;
         }
     }
 }
@@ -626,7 +528,7 @@ body.home {
             position: absolute;
             margin: -84px 0 0 -83px;
             z-index: -10;
-            @include transition(0.3s);
+            @include trans(0.3s);
         }
     }
 
@@ -648,7 +550,7 @@ body.home {
                 @include bebas_light;
 
                 a {
-                    @include transition(0.2s);
+                    @include trans(0.2s);
                     color: $purple_1;
                     display: block;
                     padding: 0.6em 0 0.5em 1.2em;
@@ -670,7 +572,7 @@ body.home {
                         top: 50%;
                         margin-top: -14px;
                         opacity: 0;
-                        @include transition(0.2s);
+                        @include trans(0.2s);
                     }
 
                     &:hover, &:focus {
@@ -702,14 +604,14 @@ body.home {
 ------------------------------------------------------------------------------*/
 
 .article {
-    padding: 15em 5em 5em 15em;
-    max-width: 1040px;
+    padding: 12em 0;
 
     h1 {
+        color: $purple_1;
         position: relative;
         margin-bottom: 0.65em;
         width: 80%;
-        @include transition(0.4s);
+        @include trans(0.4s);
 
         &:before {
             content: "\e907";
@@ -726,13 +628,15 @@ body.home {
             position: absolute;
             margin: -35px 0 0 -56px;
             z-index: -10;
-            @include transition(0.4s);
+            @include trans(0.4s);
         }
     }
 
     h2 {
+        color: $purple_1;
         @include bebas_bold;
         font-size: 5.3em;
+        letter-spacing: 0.025em;
         border-bottom: 1px solid #ccc;
         line-height: 0.9em;
         padding: 0 0 5px;
@@ -740,17 +644,15 @@ body.home {
     }
 
     h3 {
+        color: $purple_1;
         @include bebas_book;
         margin: 1.5em 0 0.7em;
         padding: 0;
         font-size: 2.6em;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.15em;
     }
 
     .content {
-        float: left;
-        width: 78%;
-        padding: 0 15px 0 0;
 
         p.lead {
             margin: 0 0 1.2em;
@@ -880,7 +782,6 @@ body.home {
 
 @media screen and (max-width: 1120px){
     .article {
-        padding-left: 10em;
 
         h1 {
             font-size: 9em;
@@ -890,8 +791,6 @@ body.home {
 
 @media screen and (max-width: 1025px){
     .article {
-        padding-left: 8em;
-        padding-right: 8em;
 
         h1 {
             font-size: 8em;
@@ -900,7 +799,6 @@ body.home {
         }
 
         .content {
-            width: 75%;
 
             blockquote:before {
                 background-position: -1px -1px;
@@ -911,7 +809,6 @@ body.home {
         }
         aside {
             font-size: 8.5px;
-            width: 25%;
 
             .aside_meta {
                 .date {
@@ -933,41 +830,13 @@ body.home {
         }
     }
 }
-@media screen and (max-width: 780px){
+@media screen and (max-width: 700px){
     .article {
-        padding-left: 6em;
-        padding-right: 4em;
-    }
-}
-@media screen and (max-width: 720px){
-    .article {
-        h1 {
-            width: 100%;
-        }
-        .content {
-            width: 100%;
-            float: none;
-            padding-right: 0;
-
-            p.stripes_blue {
-                &:before {
-                    left: -4em;
-                    width: 60%;
-                }
-            }
-        }
-        aside {
-            display: none;
-        }
-    }
-}
-@media screen and (max-width: 590px){
-    .article {
-        font-size: 8.5px;
-        padding-right: 4em;
-        padding-left: 4em;
+        padding-left: 2em;
+        padding-right: 2em;
 
         h1 {
+            width: 100%;
             font-size: 7em;
 
             &:before {
@@ -979,6 +848,21 @@ body.home {
                 margin-left: -80px;
             }
         }
+        .content {
+            p.stripes_blue {
+                &:before {
+                    left: -4em;
+                    width: 60%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 590px){
+    .article {
+        font-size: 8.5px;
+        padding-top: 8em;
 
         .content {
             p.lead {
@@ -993,7 +877,6 @@ body.home {
             }
             blockquote {
                 margin: 0.7em 0;
-
             }
         }
     }

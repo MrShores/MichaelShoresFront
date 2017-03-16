@@ -1,29 +1,34 @@
-{% extends 'templates/base.twig' %}
+{% extends 'templates/_base.twig' %}
 
 {% block content %}
 
+<div class="container">
+    <div class="row">
+        <div class="col_10">
+            <div class="article_list">
 
-    <div class="article_list">
+                <h1><span>{{ page.title }}</span></h1>
 
-        <h1><span>{{ page.title }}</span></h1>
-
-        <ul class="articles">
-            {% for a in articles %}
-                <li>
-                    <h2>
-                        <a href="{{ a.permalink }}" title="{{ a.title }}">{{ a.title }}</a>
-                    </h2>
-                    <div class="count">
-                        {% if loop.revindex < 10 %}
-                            0{{ loop.revindex }}.
-                        {% else %}
-                            {{ loop.revindex }}.
-                        {% endif %}
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
+                <ul class="articles">
+                    {% for a in articles %}
+                        <li>
+                            <h2>
+                                <a href="{{ a.permalink }}" title="{{ a.title }}">{{ a.title }}</a>
+                            </h2>
+                            <div class="count">
+                                {% if loop.revindex < 10 %}
+                                    0{{ loop.revindex }}.
+                                {% else %}
+                                    {{ loop.revindex }}.
+                                {% endif %}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>            
+        </div>
     </div>
+</div>
 
 
 {% endblock %}
